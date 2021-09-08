@@ -1,0 +1,99 @@
+<head>
+    {% load static %}
+  <link rel="stylesheet" href="{% static 'css/vehiculos2.css' %}">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <title>FASE PULPO</title>
+</head>
+<body>
+{% comment %} menu hamburguesa mobile {% endcomment %}
+<div class="icono-menu">
+    <img src="{% static 'images/open-menu.png' %}" id="icono-menu">
+</div>
+
+    <div class="cont-menu active" id="menu">
+        <ul>
+            <li class="burger-icon"> Dashboard </li>
+            <li class="burger-icon"> Vehículos </li>
+            <li class="burger-icon"> Configuración </li>
+            <li class="burger-icon"> Cerrar sesión </li>
+        </ul>
+    </div>
+
+<ul class="lateral">
+    <li class="lateral_item"><img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt=""></li>
+    <div class="tres-iconos">
+      <li class="lateral_item"><a class="center-icon" href="#news"><img src="{% static 'images/dashboard.png' %}" alt=""></a></li>
+      <li class="lateral_item"><a class="center-icon" href="#contact"><img src="{% static 'images/truck.png' %}"</a></li>
+      <li class="lateral_item"><a class="center-icon_conf" href="#about"><img src="{% static 'images/settings.png' %}" alt=""></a></li>
+    </div>
+    <li class="lateral_item"><a class="logout" href="#about"><img src="{% static 'images/enter.png' %}" alt=""></a></li>
+</ul>
+
+<ul>
+  <li class="menu_li--left"><img src="{% static 'images/Grupo 66.png' %}" alt=""></li>
+</ul>
+
+<section class="horizontal">
+                <H2>VEHÍCULOS</H2>
+                <section class="horizontal_graficas--1">
+                    <section class="browser">
+                        <img src="" alt="">
+                        <input type="search" placeholder="Buscar">
+                        <div class="menu_button">
+                            <button class="menu_li--right" type="submit">Buscar</button>
+                        </div>
+                    </section>
+
+                    <section class="trucks">
+                        <div class="truck_number chat">
+                            <img src="{% static 'images/truck.png' %}" alt="">
+                            <h4>Vehículo 1</h4>
+                        </div>
+                        <div class="truck_number chat">
+                            <img src="{% static 'images/truck.png' %}" alt="">
+                            <h4>Vehículo 2</h4>
+                        </div>
+                        <div class="truck_number chat">
+                            <img src="{% static 'images/truck.png' %}" alt="">
+                            <h4>Vehículo 3</h4>
+                        </div>
+                        <div class="truck_number chat">
+                            <img src="{% static 'images/truck.png' %}" alt="">
+                            <h4>Vehículo 4</h4>
+                        </div>
+                        <div class="truck_number chat">
+                            <img src="{% static 'images/truck.png' %}" alt="">
+                            <h4>Vehículo 3</h4>
+                        </div>
+                        <div class="truck_number chat">
+                            <img src="{% static 'images/truck.png' %}" alt="">
+                            <h4>Vehículo 4</h4>
+                        </div>
+                    </section>
+                </section>
+            </section>
+
+<script>
+const iconoMenu = document.querySelector('#icono-menu'),
+      menu = document.querySelector('#menu');
+
+iconoMenu.addEventListener('click', (e) => {
+
+    // Alternamos estilos para el menu y body
+    menu.classList.toggle('active');
+    document.body.classList.toggle('opacity');
+
+    // Alternamos su atributo 'src' para el ícono del menú
+    const rutaActual = e.target.getAttribute('src');
+
+    if(rutaActual == '{% static 'images/open-menu.png' %}'){
+        e.target.setAttribute('src','{% static 'images/open-menu2.png' %}');
+    }else{
+        e.target.setAttribute('src','{% static 'images/open-menu.png' %}');
+    }
+});
+</script>
+</body>
+</html>

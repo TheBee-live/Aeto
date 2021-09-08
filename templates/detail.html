@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Este meta sirve para hacer SEO, lo que va aquí da más info en el navegador">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    <title>FASE PULPO</title>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <li class="menu_li--left"><img src="{% static 'images/Grupo 66.png' %}" alt=""></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+        <section>
+            <div class="container-menu2">
+                <div class="content">
+                    <img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt="">
+                    <nav>
+                        <a href="{% url 'dashboards:pulpo' %}"><img src="{% static 'images/dashboard.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:search' %}"><img src="{% static 'images/truck.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:config' %}"><img src="{% static 'images/settings.png' %}" alt=""></a>
+                    </nav>
+                    <a href="{% url 'dashboards:logout' %}" class="logout_btn"><img src="{% static 'images/enter.png' %}" alt=""></a>
+                </div>
+            </div>
+            <!-- <section class="hor_2">
+                <div>
+                    <h3>BITACORA</h3>
+                    <img src="{% static 'images/Trazado 9.png' %}" alt="">
+                    
+                    <h4>Fecha</h4> <p>21/sep/2021</p>
+                    <h4>Encontrado</h4> <p>T680</p>
+                    <h4>Tiempo</h4> <p>2 minutos</p>
+                </div>
+            </section> -->
+            <section class="title">
+                <div class="title_car">
+                    <h2>VEHÍCULO {{vehiculo.numero_economico}}</h2>
+                </div>
+            </section>
+            <section class="horizontal">
+                <section class="horizontal_graficas--1">
+                    <div class="cont_hor-1">
+                        <div class="imgs_gp62">
+                            <img class="src3" src="{% static 'images/parRuedas.png' %}" alt="">
+                            <img class="src4" src="{% static 'images/dosParRuedas.png' %}" alt="">
+                            <img class="src5" src="{% static 'images/dosParRuedas.png' %}" alt="">
+                        </div>
+                        <div class="cont_text">
+                            <div class="title-cont_text">
+                                <h3>SERIAL DEL VEHÍCULO</h3>
+                                <button>GENERAL</button>
+                            </div>
+                            <div class="contenido">
+                                <h4 class="num">Num Económico</h4> 
+                                <h4 class="model">Modelo</h4> 
+                                <h4 class="marca">Marca</h4> 
+                                <h4 class="km">Clase</h4>
+                            </div>
+                            <div class="content_results">
+                                <p>{{vehiculo.numero_economico}}</p>
+                                <p>{{vehiculo.modelo}}</p>
+                                <p>{{vehiculo.marca}}</p>
+                                <p>{{vehiculo.clase}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <section class="hor_2">
+                <section class="hor_2-content">
+                    <h3>BITACORA</h3>
+                    <div class="cont_hor-2">
+                        <img src="{% static 'images/Trazado 9.png' %}" alt="">
+                    </div>
+                    <div class="contenido2">
+                        <h4>Fecha</h4>
+                        <h4>Encontrado</h4>
+                        <h4>Tiempo</h4>
+                    </div>
+                    <div class="results-contenido2">
+                        <p>{{fecha}}</p>
+                        <p>{{vehiculo.presion_de_entrada}}</p>
+                        <p>{{vehiculo.tiempo_de_inflado}} minutos</p>
+                    </div>
+                </section>
+            </section>
+
+            <section class="hor_3">
+                <section class="hor_3-content">
+                    <div class="title-hor_3">
+                        <h3>DASHBOARD DEL VEHÍCULO</h3>
+                        <button>PULPO DB</button>
+                    </div>
+                    <div class="icon-pulpo">
+                        <img src="{% static 'images/Trazado 9.png' %}" alt="">
+                        <p id="days">30 días</p>
+                    </div>
+                    <div class="time-run">
+                        <img src="{% static 'images/fast-time.png' %}" alt="">
+                        <h3>Tiempo promedio</h3>
+                        <p>{{vehiculo.tiempo_de_inflado}} minutos</p>
+                    </div>
+                    <div class="grafica">
+                        <div class="sec_grafica">
+                            <div class="cont-graf_sec">
+                                <canvas id="Chart1" width="400" height="400"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+            <script>
+
+                window.onload = function dias_sin_inflado(){
+                    hoy = new Date("{{hoy.month}}/{{hoy.day}}/{{hoy.year}}")
+                    vehiculo_fecha{{vehiculo.id}} = new Date("{{vehiculo.fecha_de_inflado.month}}/{{vehiculo.fecha_de_inflado.day}}/{{vehiculo.fecha_de_inflado.year}}")
+                    
+                    var difference= Math.abs(hoy-vehiculo_fecha{{vehiculo.id}});
+                    days = Math.round(difference/(1000 * 3600 * 24));
+
+                    document.getElementById("days").innerText = days + " días";
+                }
+
+                var ctx = document.getElementById('Chart1').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['May', 'Jun', 'Jul', 'Ago'],
+                        datasets: [{
+                            label: 'Fecha',
+                            data: [22, 29,  13, 15],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                            ],
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Entrada',
+                            data: [12, 19, 3, 10],
+                            backgroundColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                            ],
+                            borderWidth: 1
+                        },]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+        </section>
+    </main>
+</body>
+</html>

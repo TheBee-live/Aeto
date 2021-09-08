@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Este meta sirve para hacer SEO, lo que va aquí da más info en el navegador">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="shortcut icon" href="{% static 'images/favicon.ico' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/pulpo.css' %}">
+    <title>FASE PULPO</title>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <li class="menu_li--left"><img src="{% static 'images/Grupo 66.png' %}" alt=""></li>
+                <!-- <li class="menu_li--right"><input type="text" placeholder="clase"></li>
+                <li class="menu_li--right"><input type="text" placeholder="localidad"></li> -->
+                
+                <form id="form_fecha" action="{% url 'dashboards:buscar' %}" method="GET">
+                    <li class="menu_li--right">
+                        <div class="multiselect2">
+                            <div class="selectBox2" onclick="showCheckboxes2()">
+                                <select name="OS">
+                                    <option value="1">Ubicación</option> 
+                                </select>
+                                <div class="overSelect2"></div>
+                            </div>
+                            <div id="checkboxes2" style="background-color: #171717;">
+                                <label for="one"><input type="checkbox"><p>Monterrey</p></label>
+                                <label for="two"><input type="checkbox"><p>Torreón</p></label>
+                                <label for="three"><input type="checkbox"><p>Jalisco</p></label>
+                            </div>
+                        </div>
+                    </li>
+                    
+                    <li class="menu_li--right">
+                        <form>
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes()">
+                                    <select name="OS">
+                                        <option value="1">Clase</option> 
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes" style="background-color: #171717;">
+                                    <label for="one"><input type="checkbox"><p>Camioneta</p></label>
+                                    <label for="two"><input type="checkbox"><p>Cortina</p></label>
+                                    <label for="three"><input type="checkbox"><p>Tolva</p></label>
+                                </div>
+                            </div>
+                    </li>
+                    {% if fecha %}
+                        <li class="menu_li--right"><input class="li_input--date" {% if fecha2 %}value="{{fecha2}}"{% endif %} type="date" name="fecha2"></li>
+                    {% endif %}
+                    <li class="menu_li--right"><input class="li_input--date" {% if fecha %}value="{{fecha}}"{% endif %} type="date" name="fecha1"></li>
+                    <div class="menu_button">
+                        <button class="menu_li--right" type="submit">Buscar</button>
+                    </div>
+                    {% if request.user.username == "v2" %}
+                        <div class="menu_button">
+                            <a href="{% url 'dashboards:pulpov2' %}">V2.1</a>
+                        </div>
+                    {% endif %}
+                </form>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+        <script src="{% static 'js/gauge.js' %}"></script>
+        <section class="container-all">
+            <div class="container-menu2">
+                <div class="content">
+                    <img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt="">
+                    <nav>
+                        <a href="{% url 'dashboards:pulpo' %}" class="square"><img src="{% static 'images/dashboard.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:search' %}" class="bus"><img src="{% static 'images/truck.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:config' %}" class="config"><img src="{% static 'images/settings.png' %}" alt=""></a>
+                    </nav>
+                    <a href="{% url 'dashboards:logout' %}" class="logout_btn"><img src="{% static 'images/enter.png' %}" alt=""></a>
+                </div>
+            </div>
+            <section class="horizontal">
+                <section class="horizontal_graficas--1">
+                    <div class="sec1_grafica">
+                        <h3>Vehículos inflados</h3>
+                        <div class="cont-horizontal">
+                            <div class="graf-barras-1">
+                                <div class="cont_graf-barras-1">
+                                    <canvas id="demo"></canvas>
+                                    <div id="preview-textfield" style="display:none;"></div>
+                                </div>
+                            </div>
+                            <div class="porcientos">
+                                {% if fecha_con_formato %}
+                                    <p class="divis">{{fecha_con_formato}}</p>
+                                {% else %}
+                                    {% if clase %}
+                                        <p class="divis">{{clase}}</p>
+                                    {% else %}
+                                        <p class="divis">Último mes</p>
+                                    {% endif %}
+                                {% endif %}
+                                {% if porcentaje_inflado %}
+                                    {% if porcentaje_inflado == "Nada" %}
+                                        <p class="percent">No hay vehículos aún</p>
+                                    {% else %}
+                                        <p class="percent1">{{porcentaje_inflado}}%</p>
+                                        <p class="percent">{{cantidad_inflado}}/{{cantidad_total}}</p>
+                                    {% endif %}
+                                {% else %}
+                                    {% if porcentaje_inflado == 0 %}
+                                        <p class="percent1">{{porcentaje_inflado}}%</p>
+                                        <p class="percent">{{cantidad_inflado}}/{{cantidad_total}}</p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="graf-barras">
+                                <div class="cont_graf-barras">
+                                    <canvas id="bar1" width="400" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="sec1_grafica">
+                        <h3>Entradas correctas</h3>
+                        <div class="cont-horizontal">
+                            <div class="graf-barras-1">
+                                <div class="cont_graf-barras-1">
+                                    <canvas id="demo2"></canvas>
+                                    <div id="preview-textfield2" style="display:none;"></div>
+                                </div>
+                            </div>
+                            <div class="porcientos">
+                                {% if fecha_con_formato %}
+                                    <p class="divis">{{fecha_con_formato}}</p>
+                                {% else %}
+                                    {% if clase %}
+                                        <p class="divis">{{clase}}</p>
+                                    {% else %}
+                                        <p class="divis">Último mes</p>
+                                    {% endif %}
+                                {% endif %}
+                                {% if porcentaje_entrada_correcta %}
+                                    {% if porcentaje_entrada_correcta == "Nada" %}
+                                        <p class="percent">No hay vehículos en esta fecha</p>
+                                    {% else %}
+                                        <p class="percent2">{{porcentaje_entrada_correcta}}%</p>
+                                        <p class="percent">{{cantidad_entrada}}/{{cantidad_inflado}}</p>
+                                    {% endif %}
+                                {% else %}
+                                    {% if porcentaje_entrada_correcta == 0 %}
+                                        <p class="percent2">{{porcentaje_entrada_correcta}}%</p>
+                                        <p class="percent">{{cantidad_entrada}}/{{cantidad_inflado}}</p>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="graf-barras">
+                                <div class="cont_graf-barras">
+                                    <canvas id="bar2" width="400" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="horizontal_graficas--2">
+                    <div class="sec2_grafica">
+                        <div class="cont-graf_sec2">
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                    <div class="sec2_grafica">
+                        <div class="cont-graf_sec2">
+                            <canvas id="myChart2" width="400" height="400"></canvas>
+                        </div>
+                    </div>
+                </section>
+                <section id="table-wrapper" class="horizontal_graficas--3">
+                    <div id="table-scroll" class="sec3_grafica--table">
+                        <table class="data">
+                            {% if vehiculos_periodo %}
+                            <thead>
+                                <tr>
+                                    <th class="color-trans">Icono</th>
+                                    <th>Serial</th>
+                                    <th class="color-trans">Clase</th>
+                                    <th>Días sin inflado</th>
+                                    
+                                </tr>
+                            </thead>
+                                    {% for vehiculo_p in vehiculos_periodo %}
+                                    <tbody>
+                                        <tr>
+                                            <td class="color-trans"><img src="{% static 'images/truck.png' %}" alt=""></td>
+                                            <td>{{vehiculo_p.numero_economico}}</td>
+                                            <td class="color-trans">{{vehiculo_p.clase}}</td>
+                                            <td id="dias {{vehiculo_p.id}}"></td>
+                            
+                                        </tr>
+                                    </tbody>
+                                    {% endfor %}
+                            {% endif %}
+                        </table>
+                    </div>
+                </section>
+            </section>
+            <section class="vertical">
+                <section class="vertical_graficas--1">
+                    <div class="grafica_vertical">
+                        <div class="cont-graf">
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    </div>
+                    <div class="grafica_vertical">
+                        <div class="cont-graf">
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
+                    <div class="sec3_grafica">
+                        <h3>Tiempo promedio de inflado</h3>
+                        <div class="tiempo">
+                            <img src="{% static 'images/fast-time.png' %}" alt="">
+                            <p>{% if tiempo_promedio %}{{tiempo_promedio}}{% else %}0{% endif %} minutos</p>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+
+        <script>
+
+            var expanded = false;
+            function showCheckboxes(){
+                var checkboxes = document.getElementById("checkboxes");
+                if (!expanded) {
+                    checkboxes.style.display = "block";
+                    checkboxes.style.position = "absolute";
+                    expanded = true;
+                } else {
+                    checkboxes.style.display = "none";
+                    expanded = false;
+                }
+            }
+
+            // var expanded = false;
+            function showCheckboxes2(){
+                var checkboxes = document.getElementById("checkboxes2");
+                if (!expanded) {
+                    checkboxes.style.display = "block";
+                    checkboxes.style.position = "absolute";
+                    expanded = true;
+                } else {
+                    checkboxes.style.display = "none";
+                    expanded = false;
+                }
+            }
+
+            window.onload = function dias_sin_inflado(){
+                hoy = new Date("{{hoy.month}}/{{hoy.day}}/{{hoy.year}}")
+                var rango_1 = 0;
+                var rango_2 = 0;
+                var rango_3 = 0;
+
+
+                {% for vehiculo in vehiculos_todos %}
+                vehiculo_fecha{{vehiculo.id}} = new Date("{{vehiculo.fecha_de_inflado.month}}/{{vehiculo.fecha_de_inflado.day}}/{{vehiculo.fecha_de_inflado.year}}")
+                var difference= Math.abs(hoy-vehiculo_fecha{{vehiculo.id}});
+                days = Math.round(difference/(1000 * 3600 * 24));
+                {% if vehiculo in vehiculos_periodo %}
+                document.getElementById("dias {{vehiculo.id}}").innerText = days;
+                {% endif %}
+
+                if (0<=days && days<= {{rango_1}} ){
+                    rango_1 = rango_1 + 1;
+                }
+                else if ( {{rango_3}} <=days && days<= {{rango_2}}){
+                    rango_2++;
+                }
+                else if ( {{rango_4}} <=days){
+                    rango_3++;
+                }
+                
+                {% endfor %}
+                
+                // score gauge
+                var opts = {
+                    angle: -0.2, // The span of the gauge arc
+                    lineWidth: 0.2, // The line thickness
+                    radiusScale: 1, // Relative radius
+                    pointer: {
+                        length: 0.6, // // Relative to gauge radius
+                        strokeWidth: 0.035, // The thickness
+                        color: '#000000' // Fill color
+                    },
+                    limitMax: false,     // If false, max value increases automatically if value > maxValue
+                    limitMin: false,     // If true, the min value of the gauge will be fixed
+                    colorStart: '#6FADCF',   // Colors
+                    colorStop: '#8FC0DA',    // just experiment with them
+                    strokeColor: '#E0E0E0',  // to see which ones work best for you
+                    generateGradient: true,
+                    highDpiSupport: true,     // High resolution support
+                    // color configs
+                    colorStart: "#6fadcf",
+                        colorStop: void 0,
+                        gradientType: 0,
+                        strokeColor: "#e0e0e0",
+                        generateGradient: true,
+                        percentColors: [[0.0, "#a9d70b" ], [0.50, "#f9c802"], [1.0, "#ff0000"]],
+                        // customize pointer
+                        pointer: {
+                        length: 0.8,
+                        strokeWidth: 0.035,
+                        iconScale: 1.0
+                        },
+                        // static labels
+                        staticLabels: {
+                        font: "10px sans-serif",
+                        labels: [200, 500, 2100, 2800],
+                        fractionDigits: 0
+                        },
+                        // static zones
+                        staticZones: [
+                        {strokeStyle: "#F03E3E", min: 0, max: 1000},
+                        {strokeStyle: "#FFDD00", min: 1000, max: 2000},
+                        {strokeStyle: "#30B32D", min: 2000, max: 3000},
+                        ],
+                        // render ticks
+                        renderTicks: {
+                        divisions: 5,
+                        divWidth: 1.1,
+                        divLength: 0.7,
+                        divColor: '#333333',
+                        subDivisions: 3,
+                        subLength: 0.5,
+                        subWidth: 0.6,
+                        subColor: '#666666'
+                        },
+                        // the span of the gauge arc
+                        angle: 0.15,
+
+                        // line thickness
+                        lineWidth: 0.44,
+
+                        // radius scale
+                        radiusScale: 1.0,
+
+                        // font size
+                        fontSize: 40,
+
+                        // if false, max value increases automatically if value > maxValue
+                        limitMax: false,
+
+                        // if true, the min value of the gauge will be fixed
+                        limitMin: false,
+
+                        // High resolution support
+                        highDpiSupport: true
+                        
+                        };
+                        var target = document.getElementById('demo'); 
+                        var gauge = new Gauge(target).setOptions(opts);
+                        document.getElementById("preview-textfield").className = "preview-textfield";
+                        gauge.setTextField(document.getElementById("preview-textfield"));
+                        gauge.maxValue = 3000;
+                        gauge.setMinValue(0);
+                        {% if porcentaje_inflado %}
+                            {% if porcentaje_inflado == "Nada" %}
+                                gauge.set(10);
+                            {% else %}
+                                gauge.set({{porcentaje_inflado}}*30);
+                            {% endif %}
+                        {% else %}
+                            gauge.set(10);
+                        {% endif %}
+                        gauge.animationSpeed = 32;
+
+                        var target = document.getElementById('demo2'); 
+                        var gauge = new Gauge(target).setOptions(opts);
+                        document.getElementById("preview-textfield2").className = "preview-textfield2";
+                        gauge.setTextField(document.getElementById("preview-textfield2"));
+                        gauge.maxValue = 3000;
+                        gauge.setMinValue(0); 
+                        {% if porcentaje_entrada_correcta %}
+                            {% if porcentaje_entrada_correcta == "Nada" %}
+                                gauge.set(10);
+                            {% else %}
+                                gauge.set({{porcentaje_entrada_correcta}}*30);
+                            {% endif %}
+                        {% else %}
+                            gauge.set(10);
+                        {% endif %}
+                        gauge.animationSpeed = 32;
+
+                var ctx = document.getElementById('bar1').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['', '', ''],
+                        datasets: [{
+                            data: [5, 2, 3],
+                            backgroundColor: [
+                                'rgba(23, 23, 23, 1)',
+                                'rgba(23, 23, 23, 1)',
+                                'rgba(23, 23, 23, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                            ],
+                            borderWidth: 3
+                        }]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                display: false
+                            }
+                        }
+                    }
+                });
+
+                var ctx = document.getElementById('bar2').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: ['', '', ''],
+                        datasets: [{
+                            fill: false,
+                            data: [2, 3, 5],
+                            backgroundColor: [
+                                'rgba(23, 23, 23, 1)',
+                                'rgba(23, 23, 23, 1)',
+                                'rgba(23, 23, 23, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                            ],
+                            borderWidth: 2.5
+                        }]
+                    },
+                    options: {
+                        plugins:{
+                            legend: {
+                                display: false
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                display: false
+                            }
+                        }
+                    }
+                });
+
+                var ctx = document.getElementById('myChart').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['0-{{rango_1}} días', '{{rango_3}}-{{rango_2}} días', '{{rango_2}}+'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [rango_1, rango_2, rango_3],
+                            backgroundColor: [
+                                'rgba(51, 241, 17, 0.2)',
+                                'rgba(255, 206, 86, 0.2)',
+                                'rgba(255, 99, 132, 0.2)',
+                            ],
+                            borderColor: [
+                                'rgba(51, 241, 17, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(255, 99, 132, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Periodos de inflado',
+                                font: {
+                                    family: "Montserrat",
+                                    size: 16,
+                                    lineHeight: 0
+                                },
+                                color: 'white'
+                            }
+                        }
+                    }
+                });
+
+                var ctx = document.getElementById('myChart2').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ["May", "Jun", "Jul", "Ago"],
+                        datasets: [{
+                            label: 'Fecha',
+                            data: [0, rango_3, rango_2, rango_1],
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                            ],
+                            borderColor: [
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 99, 132, 1)',
+                            ],
+                            borderWidth: 1
+                        },
+                        {
+                            label: 'Entrada',
+                            data: [0, 200, 400, 300],
+                            backgroundColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)'
+                            ],
+                            borderColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)'
+                            ],
+                            borderWidth: 1
+                        },]
+                    },
+                    options: {
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Cantidad de vehículos Vs Inflados',
+                                font: {
+                                    family: "Montserrat",
+                                    size: 15,
+                                    lineHeight: 0
+                                },
+                                color: 'white'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+
+                var ctx = document.getElementById('myChart3').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: [{% for clase in clases_mas_frecuentes %}
+                                    '{{clase}}', 
+                                {% endfor %}
+                                ],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [{% for clase, num in clases_mas_frecuentes.items %}
+                                    '{{num}}', 
+                                {% endfor %}
+                                ],
+                            backgroundColor: [
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                
+                            ],
+                            borderColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Porcentaje de clase de vehículos inflados',
+                                font: {
+                                    family: "Montserrat",
+                                    size: 15,
+                                    lineHeight: 0
+                                },
+                                color: 'white'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                display: false
+                            },
+                            r: {
+                                pointLabels:{
+                                    font:{
+                                        size:13
+                                    }
+                                },
+                                grid:{
+                                    color:'#fff'
+                                },
+                                angleLines:{
+                                    color:'#fff'
+                                },
+                                max: {{radar_max}},
+                                min: {{radar_min}},
+                                ticks: {
+                                    display: true,
+                                    color: 'white',
+                                    showLabelBackdrop: false
+                                },
+                            }
+                        }
+                    }
+                });
+
+                var ctx = document.getElementById('myChart4').getContext('2d');
+                var myChart = new Chart(ctx, {
+                    type: 'radar',
+                    data: {
+                        labels: ['ACo', 'CS 53', 'CS 53-3e', 'CR 53', 'Dol', 'Tol', 'TorS', 'Trc'],
+                        datasets: [{
+                            label: '# of Votes',
+                            data: [30, 32, 23, 38, 28 , 30 , 31, 29],
+                            backgroundColor: [
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                'rgba(246, 170, 111, 0.2)',
+                                
+                            ],
+                            borderColor: [
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                                'rgba(246, 170, 111, 1)',
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            title: {
+                                display: true,
+                                text: 'Porcentaje de clase de vehículos inflados',
+                                font: {
+                                    family: "Montserrat",
+                                    size: 15,
+                                    lineHeight: 0
+                                },
+                                color: 'white'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                display: false
+                            },
+                            r: {
+                                pointLabels:{
+                                    font:{
+                                        size:8
+                                    }
+                                },
+                                grid:{
+                                    color:'#fff'
+                                },
+                                angleLines:{
+                                    color:'#fff'
+                                },
+                                max: 38,
+                                min: 17,
+                                ticks: {
+                                    display: false,
+                                    color: 'white',
+                                    showLabelBackdrop: false
+                                },
+                            }
+                        }
+                    }
+                });
+            }//ESTA LLAVE NO SE BORRA
+            </script>
+    </main>
+</body>
+</html>

@@ -1,0 +1,434 @@
+:root{
+    --inputs-laterales:  linear-gradient(#D76369, #F4AA74);
+    --red: #D76369;
+    --orange: #F6AA6F;
+    --black: #171717;
+    --gray: linear-gradient(#363636, #242424);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--gray);
+}
+
+html{
+    font-size: 62.5%;
+    color: white;
+    height: 100%;
+}
+
+/* MENÚ */
+header{
+    margin-bottom: 80px;
+    height: 55px;
+}
+
+.menu{
+    width: 100%;
+    float: left;
+}
+
+/* .menu ul {
+    margin-left: 10px;
+} */
+
+.menu ul .menu_li--left{
+    list-style: none;
+}
+
+.menu ul .menu_li--left img{
+    /* width: 30px; */
+    height: 30px;
+    margin-left: 80px;
+    float: left;
+}
+
+.menu ul .menu_li--right{
+    float: right;
+    list-style: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.menu ul .menu_li--right input {
+    margin-right: 10px;
+    /* margin-left: 10px; */
+    width: 100px;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.menu ul .menu_li--right select {
+    margin-right: 10px;
+    width: 100px;
+    height: 24.5px;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.menu ul li .li_input--date{
+    width: 100px;
+    height: 15px;
+}
+
+/* MENÚ LATERAL */
+.container-menu2{
+    position: absolute;
+    width: 5%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.content{
+    width: 100%;
+    max-width: 100px;
+    background: #000000;
+    height: 100vh;
+    position: relative;
+}
+
+.content nav {
+    margin-top: 170px;
+    transform: translateY(15%);
+}
+
+.content .pulpo{
+    width: 40px;
+    height: 35px;
+    padding: 13px;
+}
+
+.content .logout_btn{
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    color: white;
+    margin-top: 210px;
+    margin-left: 10px;
+    border-left: 5px solid transparent;
+}
+
+.content nav a {
+    display: block;
+    margin-bottom: 9px;
+    text-decoration: none;
+    padding: 6px;
+    color: white;
+    border-left: 5px solid transparent;
+}
+
+.content nav a:hover{
+    border-left: 5px solid white;
+    background: #1f1f1f;
+}
+
+/* PRIMERAS 2 GRÁFICAS */
+.horizontal{
+    width: 77%;
+    height: 420px;
+    /* height: 70%; */
+    margin: 0 auto;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    background-color: var(--black);
+
+}
+
+.horizontal h2 {
+    font-size: 2.6rem;
+    padding: 30px;
+}
+
+.horizontal .horizontal_graficas--1{
+    display: flex;
+    margin-top: -30px;
+}
+
+.horizontal_graficas--1{
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.con1{
+    width: 20%;
+    height: 280px;
+    margin-left: 30px;
+    border-radius: 10px;
+    background-color: var(--gray);
+}
+
+.con1 .title_cont1 {
+    /* width: 55%; */
+    text-align: center;
+}
+
+.con1 .dias_inflado{
+    /* width: 55%; */
+    text-align: center;
+}
+
+.con1 .dias_inflado p{
+    margin-top: -8px;
+}
+
+.con1 .presion{
+   margin-left: 14px; /*o 34*/
+}
+
+.con1 .presion p{
+    margin-top: -13px;
+}
+
+.con2{
+    width: 20%;
+    height: 280px;
+    margin-left: 30px;
+    border-radius: 10px;
+    background-color: var(--gray);
+}
+
+.con2 .title_cont2 {
+    /* width: 55%; */
+    text-align: center;
+}
+
+.con2 .correo{
+    margin-left: 15px;
+}
+.con2 .correo p{
+    margin-top: -15px;
+}
+
+.con2 .nombre{
+    margin-left: 15px;
+}
+.con2 .nombre p{
+    margin-top: -15px;
+}
+
+.con2 .idioma{
+    margin-left: 15px;
+}
+.con2 .idioma p{
+    margin-top: -11px;
+}
+
+.con2 .unidades{
+    margin-left: 15px;
+}
+.con2 .unidades p{
+    margin-top: -11px;
+}
+
+.con3{
+    width: 20%;
+    height: 280px;
+    margin-left: 30px;
+}
+
+.con3 .title_cont3 {
+    margin-top: -15px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--gray);
+}
+
+.con3 .title_cont3 h3{
+    padding: 20px;
+}
+
+.con3 .buttons {
+    margin-top: 40px;
+}
+
+.con3 .buttons input{
+    position: absolute;
+    opacity: 0; 
+    visibility: hidden;
+}
+
+.con3 .buttons p{
+    width: 185px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con3 .buttons button{
+    width: 185px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con3 .buttons .button2{
+    width: 85px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #6365d7, #8b74f4);
+}
+
+.con4{
+    width: 20%;
+    height: 280px;
+    margin-left: 30px;
+}
+
+.con4 .title_cont4 {
+    margin-top: -15px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--gray);
+}
+
+.con4 .title_cont4 h3{
+    padding: 20px;
+}
+
+.con4 .buttons {
+    margin-top: 40px;
+}
+
+.con4 .buttons input{
+    position: absolute;
+    opacity: 0; 
+    visibility: hidden;
+}
+
+.con4 .buttons p{
+    width: 185px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con4 .buttons button{
+    width: 185px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con4 .buttons .button2{
+    width: 85px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #6365d7, #8b74f4);
+}
+
+.con5{
+    width: 20%;
+    height: 280px;
+    margin-left: 30px;
+}
+
+.con5 .title_cont5 {
+    margin-top: -15px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--gray);
+}
+
+.con5 .title_cont5 h3{
+    padding: 20px;
+}
+
+.con5 .buttons {
+    margin-top: -10px;
+}
+
+.con5 .buttons input{
+    position: absolute;
+    opacity: 0; 
+    visibility: hidden;
+}
+
+.con5 .buttons p{
+    width: 185px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con5 .buttons button{
+    width: 185px;
+    height: 50px;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con5 .buttons .button2{
+    width: 85px;
+    height: 20px;
+    margin-bottom: 10px;
+    margin-left: 50px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #6365d7, #8b74f4);
+}

@@ -1,0 +1,357 @@
+:root{
+    --inputs-laterales:  linear-gradient(#D76369, #F4AA74);
+    --red: #D76369;
+    --orange: #F6AA6F;
+    --black: #171717;
+    --gray: linear-gradient(#363636, #242424);
+  }
+  
+  *{
+    box-sizing: border-box;
+  }
+  
+  body{
+    margin: 0;
+    font-family: Arial;
+    background: #f1f1f1;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--gray);
+  }
+  
+  html{
+    font-size: 62.5%;
+    color: white;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--gray);
+  }
+  /* 
+  li {
+    float: left;
+  } */
+  
+  .menu_li--left{
+    float: left;
+    margin-left: 8%;
+    padding: 5px;
+  }
+  
+  /* MENU LATERAL */
+  .lateral {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 4.7%;
+    /* min-width: 5%; */
+    background: #000000;
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .lateral_item .pulpo{
+    padding: 8px 11px;
+  }
+  
+  .tres-iconos{
+    margin-top: 320%;
+  }
+  
+  .lateral_item .center-icon {
+    margin-top: 8%;
+    display: block;
+    color: white;
+    padding: 14%;
+    text-decoration: none;
+  
+  }
+  
+  .lateral_item .center-icon:hover{
+    border-left: 5px solid white;
+    background: #1f1f1f;
+  }
+  
+  .lateral_item .center-icon_conf {
+    display: block;
+    margin-top: -21%;
+    color: white;
+    padding: 14%;
+    text-decoration: none;
+  
+  }
+  
+  .lateral_item .center-icon_conf:hover{
+    border-left: 5px solid white;
+    background: #1f1f1f;
+  }
+  
+  .lateral_item .logout img{
+    display: block;
+    color: white;
+    padding: 8px 18px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 30;
+  }
+  
+  
+  /* .lateral_item a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  } */
+
+  /* configuración */
+  
+  .horizontal{
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    margin-top: 4.5%;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    background-color: var(--black);
+
+}
+
+.horizontal h2 {
+    font-size: 2.6rem;
+    padding: 30px;
+}
+
+.horizontal .horizontal_graficas--1{
+    display: flex;
+    /* margin-top: -30px; */
+}
+
+.horizontal_graficas--1{
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.con1{
+    width: 20%;
+    height: 60%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background-color: var(--gray);
+}
+
+.con1 .title_cont1 {
+    text-align: center;
+}
+
+.con1 .dias_inflado{
+    text-align: center;
+}
+
+.con1 .dias_inflado p{
+    margin-top: -8px;
+}
+
+.con1 .presion{
+   text-align: center;
+}
+
+.con1 .presion p{
+    margin-top: -13px;
+}
+
+.con2{
+    width: 20%;
+    height: 60%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    background-color: var(--gray);
+}
+
+.con2 .title_cont2 {
+    text-align: center;
+}
+
+.con2 .correo{
+    /* margin-left: 15px; */
+    text-align: center;
+}
+.con2 .correo p{
+    margin-top: -15px;
+}
+
+.con2 .nombre{
+    /* margin-left: 15px; */
+    text-align: center;
+}
+.con2 .nombre p{
+    margin-top: -15px;
+}
+
+.con2 .idioma{
+    /* margin-left: 15px; */
+    text-align: center;
+}
+.con2 .idioma p{
+    margin-top: -11px;
+}
+
+.con2 .unidades{
+    /* margin-left: 15px; */
+    text-align: center;
+}
+.con2 .unidades p{
+    margin-top: -11px;
+}
+
+.con3{
+    width: 20%;
+    height: 60%;
+    margin: 0 auto;
+    font-size: 1.5rem;
+}
+
+.con3 .title_cont3 {
+    margin-top: -20px;
+    height: 60px;
+    border-radius: 10px;
+    text-align: center;
+    background-color: var(--gray);
+}
+
+.con3 .title_cont3 h3{
+    padding: 20px;
+}
+
+.con3 .buttons {
+    margin-top: 40px;
+}
+
+.con3 .buttons input{
+    position: absolute;
+    opacity: 0; 
+    visibility: hidden;
+}
+
+.con3 .buttons p{
+    width: 100%;
+    height: 15%;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    color: black;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con3 .buttons button{
+    width: 100%;
+    height: 15%;
+    margin-bottom: 10px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #D76369, #F4AA74);
+}
+
+.con3 .buttons .button2{
+    display: flex;
+    width: 50%;
+    height: 5%;
+    margin: 0 auto;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    background: linear-gradient(to right, #6365d7, #8b74f4);
+}
+
+.con3 .buttons .button2 .blue_btn-text{
+    background: linear-gradient(to right, #6365d7, #8b74f4);
+}
+
+  /* haburguer */
+  .icono-menu{
+    display: none;
+  }
+  
+  .cont-menu{
+    display: none;
+  }
+  
+  /* Estilos para el ícono del Menú */
+  .icono-menu{
+    margin: 40px 50px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .icono-menu img{
+    vertical-align: top;
+    width: 40px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el contenedor del Menú */
+  .cont-menu{
+    background-color: rgb(42,42,42);
+    box-shadow: 2px 0px 5px 2px rgb(66,66,66);
+    width: 400px;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .5s ease;
+  }
+  
+  /* Estilos por agregar en JavaScript */
+  .active{
+    transform: translate(-600px);
+  }
+  
+  /* Estilos para el listado del Menú */
+  .cont-menu ul{
+    padding: 100px 0px 20px 0px;
+    list-style: none;
+  }
+  
+  .cont-menu ul .burger-icon{
+    color: white;
+    display: block;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 10px 50px;
+    cursor: pointer;
+  }
+  
+  .cont-menu ul .burger-icon:hover{
+    background-color: rgb(228,228,228);
+    color: rgb(42,42,42);
+  }
+  
+  /* celular */
+  @media only screen and (max-width: 600px){
+    .lateral{
+      display: none;
+    }
+    .icono-menu{
+      display: flex;
+    }
+    
+    .cont-menu{
+      display: flex;
+    }
+  
+    
+  }

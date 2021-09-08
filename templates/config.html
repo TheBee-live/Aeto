@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Este meta sirve para hacer SEO, lo que va aquí da más info en el navegador">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/config.css' %}">
+    <title>FASE PULPO</title>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <li class="menu_li--left"><img src="{% static 'images/Grupo 66.png' %}" alt=""></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="container-menu2">
+                <div class="content">
+                    <img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt="">
+                    <nav>
+                        <a href="{% url 'dashboards:pulpo' %}"><img src="{% static 'images/dashboard.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:search' %}"><img src="{% static 'images/truck.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:config' %}"><img src="{% static 'images/settings.png' %}" alt=""></a>
+                    </nav>
+                    <a href="{% url 'dashboards:logout' %}" class="logout_btn"><img src="{% static 'images/enter.png' %}" alt=""></a>
+                </div>
+            </div>
+            <section class="horizontal">
+                <H2>CONFIGURACIÓN</H2>
+                <section class="horizontal_graficas--1">
+                    <div class="con1">
+                        <div class="title_cont1">
+                            <h3>PARAMETROS DE OPERACIÓN</h3>
+                        </div>
+                        <div class="dias_inflado">
+                            <h3>Días de inflado</h3>
+                            <p>Periodo 1: {{user.perfil.periodo1}} días</p>
+                            <p>Periodo 2: {{user.perfil.periodo2}} días</p>
+                        </div>
+                        <div class="presion">
+                            <h3>Parametro de presión</h3>
+                            <h3>Objetivo</h3>
+                            <p>Baja:+- {{user.perfil.objetivo}}%</p>
+                        </div>
+                    </div>
+
+                    <div class="con2">
+                        <div class="title_cont2">
+                            <h3>PARAMETROS DEL USUARIO</h3>
+                        </div>
+                        <div class="correo">
+                            <h4>Correo</h4>
+                            <p>{{user.email}}</p>
+                        </div>
+                        <div class="nombre">
+                            <h4>Nombre</h4>
+                            <p>{{user.first_name}}</p>
+                        </div>
+                        <div class="idioma">
+                            <h4>Idioma</h4>
+                            <p>{{user.perfil.idioma}}</p>
+                        </div>
+                        <div class="unidades">
+                            <h4>Unidades</h4>
+                            <p>{{user.perfil.unidades}}</p>
+                        </div>
+                    </div>
+
+                    <div class="con3">
+                        <div class="title_cont3">
+                            <h3>ALTA VEHÍCULOS</h3>
+                        </div>
+                        <div class="buttons">
+                            <div>
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="compañia" value="{{user.perfil.compañia}}">
+                                    <label>
+                                        <p><input type="file" name="file">AGREGAR A LA LISTA DE EXCEL</p>
+                                    </label>
+                                    <label>
+                                        <button class="button2" type="submit">Continuar</button>
+                                    </label>
+                                </form>
+                            </div>
+                            <a href="https://drive.google.com/uc?export=download&id=1Lg7iQZf_N3bwSjutnlWAJwF5mlPXERai"><button>DESCARGAR FORMATO EXCEL</button></a>
+                        </div>
+                    </div>
+
+                    <div class="con4">
+                        <div class="title_cont4">
+                            <h3>ALTA LLANTAS</h3>
+                        </div>
+                        <div class="buttons">
+                            <div>
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="compañia" value="{{user.perfil.compañia}}">
+                                    <label>
+                                        <p><input type="file" name="file">AGREGAR A LA LISTA DE EXCEL</p>
+                                    </label>
+                                    <label>
+                                        <button class="button2" type="submit">Continuar</button>
+                                    </label>
+                                </form>
+                            </div>
+                            <a href="https://drive.google.com/uc?export=download&id=1Lg7iQZf_N3bwSjutnlWAJwF5mlPXERai"><button>DESCARGAR FORMATO EXCEL</button></a>
+                        </div>
+                    </div>
+
+                    <div class="con5">
+                        <div class="title_cont5">
+                            <h3>CATÁLOGOS</h3>
+                        </div>
+                        <div class="buttons">
+                            <div>
+                                    <label>
+                                        <p><input type="file" name="button">CATÁLAGO DE PRODUCTOS</p>
+                                    </label>
+                                     <label>
+                                        <p><input type="file" name="button">CATÁLAGO DE RENOVADORES</p>
+                                    </label>
+                                     <label>
+                                        <p><input type="file" name="button">CATÁLAGO DE DESECHO</p>
+                                    </label>
+                                     <label>
+                                        <p><input type="file" name="button">CATÁLAGO DE METAS</p>
+                                    </label>
+                                     <label>
+                                        <p><input type="file" name="button">CATÁLAGO DE PRESUPUESTO</p>
+                                    </label>
+                                    {% comment %} <label>
+                                        <button class="button2" type="submit">Continuar</button>
+                                    </label> {% endcomment %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

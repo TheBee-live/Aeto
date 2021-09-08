@@ -1,0 +1,24 @@
+{% comment %} menu hamburguesa mobile {% endcomment %}
+<div class="icono-menu">
+    {% load static %}
+    <img src="{% static 'images/open-menu.png' %}" id="icono-menu">
+</div>
+
+    <div class="cont-menu active" id="menu">
+        <ul>
+            <li class="burger-icon"> Dashboard </li>
+            <li class="burger-icon"> Vehículos </li>
+            <li class="burger-icon"> Configuración </li>
+            <li class="burger-icon"> Cerrar sesión </li>
+        </ul>
+    </div>
+
+<ul class="lateral">
+    <li class="lateral_item"><img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt=""></li>
+    <div class="tres-iconos">
+      <li class="lateral_item"><a class="center-icon" href="#news"><img src="{% static 'images/dashboard.png' %}" alt=""></a></li>
+      <li class="lateral_item"><a class="center-icon" href="#contact"><img src="{% static 'images/truck.png' %}"</a></li>
+      <li class="lateral_item"><a class="center-icon_conf" href="#about"><img src="{% static 'images/settings.png' %}" alt=""></a></li>
+    </div>
+    <li class="lateral_item"><a class="logout" href="#about"><img src="{% static 'images/enter.png' %}" alt=""></a></li>
+</ul>

@@ -1,0 +1,287 @@
+:root{
+    --inputs-laterales:  linear-gradient(#D76369, #F4AA74);
+    --red: #D76369;
+    --orange: #F6AA6F;
+    --black: #171717;
+    --gray: linear-gradient(#363636, #242424);
+  }
+  
+  *{
+    box-sizing: border-box;
+  }
+  
+  body{
+    margin: 0;
+    font-family: Arial;
+    background: #f1f1f1;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--gray);
+  }
+  
+  html{
+    font-size: 62.5%;
+    color: white;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--gray);
+  }
+  /* 
+  li {
+    float: left;
+  } */
+  
+  .menu_li--left{
+    float: left;
+    margin-left: 8%;
+    padding: 5px;
+  }
+  
+  /* MENU LATERAL */
+  .lateral {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 4.7%;
+    /* min-width: 5%; */
+    background: #000000;
+    position: fixed;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .lateral_item .pulpo{
+    padding: 8px 11px;
+  }
+  
+  .tres-iconos{
+    margin-top: 320%;
+  }
+  
+  .lateral_item .center-icon {
+    margin-top: 8%;
+    display: block;
+    color: white;
+    padding: 14%;
+    text-decoration: none;
+  
+  }
+  
+  .lateral_item .center-icon:hover{
+    border-left: 5px solid white;
+    background: #1f1f1f;
+  }
+  
+  .lateral_item .center-icon_conf {
+    display: block;
+    margin-top: -21%;
+    color: white;
+    padding: 14%;
+    text-decoration: none;
+  
+  }
+  
+  .lateral_item .center-icon_conf:hover{
+    border-left: 5px solid white;
+    background: #1f1f1f;
+  }
+  
+  .lateral_item .logout img{
+    display: block;
+    color: white;
+    padding: 8px 18px;
+    text-decoration: none;
+    position: absolute;
+    bottom: 30;
+  }
+  
+  
+  /* .lateral_item a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  } */
+
+  /* trucks */
+  .horizontal{
+    width: 70%;
+    height: 70%;
+    margin: 0 auto;
+    margin-top: 4.5%;
+    border-radius: 20px;
+    font-size: 1.3rem;
+    background-color: var(--black);
+
+}
+
+.horizontal h2 {
+    font-size: 2.6rem;
+    padding: 30px;
+}
+
+.horizontal .horizontal_graficas--1{
+    /* display: flex; */
+    margin-top: -30px;
+}
+
+.horizontal_graficas--1{
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.browser{
+    display: flex;
+    float: right;
+    margin-top: -15px;
+}
+
+.browser input{
+    height: 30px;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.589);
+}
+
+.menu_button .menu_li--right{
+    height: 30px;
+    background-color: #F6AA6F;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+}
+
+.trucks{
+    width: 100%;
+    height: 60%;
+    margin-top: 50px;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  
+  .trucks::-webkit-scrollbar{
+    width: 10px;
+  }
+  
+  .trucks::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: black
+  }
+  
+  .trucks::-webkit-scrollbar-track{
+    border-radius: 5px;
+    background-color: gray
+  }
+
+  .chat{
+    display: flex;
+    width: 80%;
+    /* margin-bottom: 10px;
+    margin: 5px 10px 0; */
+    flex-flow: row wrap;
+    align-items: flex-start;
+    /* border-radius: 10px;
+    font-size: 15px; */
+  }
+
+.truck_number{
+    display: flex;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 15px;
+    border-radius: 20px;
+    background-color: black;
+}
+
+.truck_number img{
+    height: 30px;
+    margin-top: 11px;
+    margin-left: 10px;
+}
+
+.truck_number h4{
+    margin-left: 15px;
+}
+  /* haburguer */
+  .icono-menu{
+    display: none;
+  }
+  
+  .cont-menu{
+    display: none;
+  }
+  
+  /* Estilos para el ícono del Menú */
+  .icono-menu{
+    margin: 40px 50px;
+    position: relative;
+    z-index: 10;
+  }
+  
+  .icono-menu img{
+    vertical-align: top;
+    width: 40px;
+    cursor: pointer;
+  }
+  
+  /* Estilos para el contenedor del Menú */
+  .cont-menu{
+    background-color: rgb(42,42,42);
+    box-shadow: 2px 0px 5px 2px rgb(66,66,66);
+    width: 400px;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: all .5s ease;
+  }
+  
+  /* Estilos por agregar en JavaScript */
+  .active{
+    transform: translate(-600px);
+  }
+  
+  /* Estilos para el listado del Menú */
+  .cont-menu ul{
+    padding: 100px 0px 20px 0px;
+    list-style: none;
+  }
+  
+  .cont-menu ul .burger-icon{
+    color: white;
+    display: block;
+    font-size: 25px;
+    text-decoration: none;
+    padding: 10px 50px;
+    cursor: pointer;
+  }
+  
+  .cont-menu ul .burger-icon:hover{
+    background-color: rgb(228,228,228);
+    color: rgb(42,42,42);
+  }
+  
+  /* celular */
+  @media only screen and (max-width: 600px){
+    .lateral{
+      display: none;
+    }
+    .icono-menu{
+      display: flex;
+    }
+    
+    .cont-menu{
+      display: flex;
+    }
+  
+    
+  }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Este meta sirve para hacer SEO, lo que va aquí da más info en el navegador">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/vehiculos.css' %}">
+    <title>FASE PULPO</title>
+</head>
+<body>
+    <header>
+        <nav class="menu">
+            <ul>
+                <li class="menu_li--left"><img src="{% static 'images/Grupo 66.png' %}" alt=""></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section>
+            <div class="container-menu2">
+                <div class="content">
+                    <img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt="">
+                    <nav>
+                        <a href="{% url 'dashboards:pulpo' %}"><img src="{% static 'images/dashboard.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:search' %}"><img src="{% static 'images/truck.png' %}" alt=""></a>
+                        <a href="{% url 'dashboards:config' %}"><img src="{% static 'images/settings.png' %}" alt=""></a>
+                    </nav>
+                    <a href="{% url 'dashboards:logout' %}" class="logout_btn"><img src="{% static 'images/enter.png' %}" alt=""></a>
+                </div>
+            </div>
+            <section class="horizontal">
+                <H2>VEHÍCULOS</H2>
+                <section class="horizontal_graficas--1">
+                    <section class="browser">
+                        <img src="" alt="">
+                        <form id="form" action="{% url 'dashboards:search_id' %}" method="GET">
+                            {% csrf_token %}
+                            <input name="numero_economico" type="search" placeholder="Buscar">
+                            <div class="menu_button">
+                                <button class="menu_li--right" type="submit">Buscar</button>
+                            </div>
+                        </form>
+                    </section>
+
+                    <section class="trucks">
+                        {% for vehiculo in vehiculos %}
+                            <a href="{% url 'dashboards:detail' vehiculo.id %}">
+                                <div class="truck_number chat">
+                                    <img src="{% static 'images/truck.png' %}" alt="">
+                                    <h4>{{vehiculo.numero_economico}}</h4>
+                                </div>
+                            </a>
+                        {% endfor %}
+                    </section>
+                </section>
+            </section>
+        </section>
+    </main>
+</body>
+</html>

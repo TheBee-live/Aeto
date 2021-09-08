@@ -1,0 +1,705 @@
+:root{
+    --inputs-laterales:  linear-gradient(#D76369, #F4AA74);
+    --red: #D76369;
+    --orange: #F6AA6F;
+    --black: #171717;
+    --gray: linear-gradient(#363636, #242424);
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 120%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    background: var(--gray);
+}
+
+html{
+    font-size: 62.5%;
+    color: white;
+    height: 100%;
+}
+
+/* MENÚ */
+header{
+    height: 55px;
+}
+
+.menu{
+    width: 100%;
+    float: left;
+}
+
+/* .menu ul {
+    margin-left: 10px;
+} */
+
+.menu ul .menu_li--left{
+    list-style: none;
+}
+
+.menu ul .menu_li--left img{
+    /* width: 30px; */
+    height: 30px;
+    margin-left: 80px;
+    float: left;
+}
+
+.menu ul .menu_li--right{
+    float: right;
+    list-style: none;
+    text-align: left;
+    padding: 5px;
+}
+
+.menu ul .menu_li--right input {
+    margin-right: 10px;
+    /* margin-left: 10px; */
+    width: 100px;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.menu ul .menu_li--right select {
+    background: linear-gradient(to right, #D76369, #F4AA74);
+    font-size: 120%;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 10px;
+    width: 100px;
+    height: 24.5px;
+    padding: 5px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
+}
+
+.menu ul li .li_input--date{
+    background: linear-gradient(to right, #D76369, #F4AA74);
+    font-size: 120%;
+    font-family: 'Montserrat', sans-serif;
+    width: 100px;
+    height: 15px;
+}
+
+.menu_button .menu_li--right{
+    background-color: #F6AA6F;
+    font-size: 140%;
+    font-family: 'Montserrat', sans-serif;
+    cursor: pointer;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    margin-right: 10px;
+    margin-top: 4px;
+}
+
+/* CHECKBOX */
+.multiselect{
+    width: 100px;
+    position: relative;
+}
+
+.selectBox{
+    position: relative;
+}
+
+.selectBox select{
+    width: 100%;
+}
+
+.overSelect{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes{
+    display: none;
+    width: 105px;
+    border: 1px #dadada solid;
+}
+
+#checkboxes p{
+    margin-left: 70px;
+    margin-top: -15px;
+}
+
+#checkboxes label{
+    display: block;
+    margin-left: -40px;
+    margin-top: 5px;
+}
+
+#checkboxes label:hover{
+    background-color: #1c90ff;
+}
+
+.multiselect2{
+    width: 150px;
+    position: relative;
+}
+
+.selectBox2{
+    position: relative;
+}
+
+.selectBox2 select{
+    width: 100%;
+}
+
+.overSelect2{
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+#checkboxes2{
+    display: none;
+    width: 105px;
+    border: 1px #dadada solid;
+}
+
+#checkboxes2 p{
+    margin-left: 70px;
+    margin-top: -15px;
+} 
+
+#checkboxes2 label{
+    display: block;
+    margin-left: -40px;
+    margin-top: 5px;
+}
+
+#checkboxes2 label:hover{
+    background-color: #1c90ff;
+}
+
+/* MENÚ LATERAL */
+.container-menu2{
+    position: absolute;
+    width: 5%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.content{
+    width: 100%;
+    max-width: 100px;
+    background: #000000;
+    height: 100vh;
+    position: relative;
+}
+
+.content nav {
+    transform: translateY(15%);
+}
+
+.content .pulpo{
+    width: 40px;
+    height: 35px;
+    padding: 13px;
+}
+
+.content .logout_btn{
+    display: block;
+    text-decoration: none;
+    padding: 15px;
+    color: white;
+    border-left: 5px solid transparent;
+}
+
+.content nav a {
+    display: block;
+    margin-bottom: 9px;
+    text-decoration: none;
+    padding: 6px;
+    color: white;
+    border-left: 5px solid transparent;
+}
+
+.content nav a:hover{
+    border-left: 5px solid white;
+    background: #1f1f1f;
+}
+
+.container-all{
+    height: 100%;
+}
+/* PRIMERAS 2 GRÁFICAS */
+.horizontal{
+    margin-left: 4%;
+    width: 66%;
+    height: 100%;
+    font-size: 1.3rem;
+    /* background-color: #590ad863; */
+}
+
+.horizontal .horizontal_graficas--1{
+    display: flex;
+    
+}
+
+.horizontal_graficas--1{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec1_grafica{
+    width: 40%;
+    height: 100%;
+    margin: 0 20px;
+    padding: 5px;
+    border-radius: 12px;
+    background-color: var(--black);
+}
+
+.sec1_grafica h3{
+    display: flex;
+    justify-content: center;
+    margin-top: -0.5px;
+}
+
+.sec1_grafica .cont-horizontal{
+    display: flex;
+}
+
+.sec1_grafica .porcientos .percent{
+    margin-top: -5px;
+    text-align: center;
+}
+
+.percent1{
+    position: absolute;
+    left: 12.5%;
+}
+
+.percent2{
+    position: absolute;
+    left: 42%;
+}
+
+.sec1_grafica .porcientos{
+    margin-left: 20px;
+}
+
+.sec1_grafica .flecha{
+    margin-left: 80px;
+}
+
+.sec1_grafica .flecha p{
+    margin-top: -0.1px;
+    text-align: center;
+    color: var(--orange);
+}
+
+.graf-barras{
+    width: 30%;
+    margin-left: 30px;
+}
+
+.graf-barras-1{
+    width: 30%;
+}
+
+#demo {
+    width: 100%;
+    margin-top: 10px;
+}
+
+#demo2 {
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* SEGUNDAS 2 GRÁFICAS */
+.horizontal_graficas--2{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec2_grafica{
+    width: 40%;
+    height: 100%;
+    margin: 0 20px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    border-radius: 12px;
+    background-color: var(--black);
+}
+
+.sec2_grafica .cont-graf_sec2{
+    width: 60%;
+    margin-left: 65px;
+    margin-top: 5px;
+}
+
+
+/* TERCERAS 2 GRÁFICAS */
+.horizontal_graficas--3{
+    display: flex;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.sec3_grafica--table{
+    width: 86%;
+    margin: 0 25px;
+    border-radius: 12px;
+    background: var(--black);
+}
+
+.sec3_grafica--table table{
+    width: 100%;
+    height: 120px;
+}
+
+.sec3_grafica--table table .color-trans{
+    background: #1f1f1f;
+}
+
+.sec3_grafica--table table tr th {
+    color: white;
+    border-radius: 12px;
+    background-color: var(--black);
+}
+
+.sec3_grafica--table table tr td {
+    text-align: center;
+    color: white;
+    border-radius: 12px;
+    background-color: var(--black);
+}
+
+
+#table-wrapper {
+    position:relative;
+  }
+  #table-scroll {
+    height:200px;
+    overflow:auto;  
+  }
+  #table-wrapper table {
+    width:100%;
+  }
+  
+  #table-scroll::-webkit-scrollbar{
+    width: 10px;
+  }
+  
+  #table-scroll::-webkit-scrollbar-thumb{
+    border-radius: 5px;
+    background-color: #171717
+  }
+  
+  #table-scroll::-webkit-scrollbar-track{
+    border-radius: 5px;
+    background-color: #363636
+  }
+
+/* SECCIÓN VERTICAL */
+.vertical{
+    width: 36.5%;
+    /* margin-left: -10px; */
+    margin-top: -47.5%;
+    height: 100%;
+    float: right;
+    /* background-color: yellow; */
+}
+
+/* .vertical_graficas--1 h3 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+} */
+
+.grafica_vertical{
+    width: 85%;
+    height: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 12px;
+    background-color: var(--black);
+}
+
+.grafica_vertical .cont-graf{
+    width: 55%;
+}
+
+/* .grafica_vertical .cont-graf canvas {
+    align-self: center;
+} */
+
+.sec3_grafica{
+    width: 85%;
+    height: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-radius: 12px;
+    background-color: var(--black);
+}
+
+.sec3_grafica h3{
+    display: flex;
+    justify-content: center;
+}
+
+.sec3_grafica .tiempo {
+    display: flex;
+    align-items: center;
+    margin-left: 35%;
+}
+
+.sec3_grafica .tiempo p{
+    margin-left: 15px;
+}
+/*Resolution Elías y Abraham*/
+@media screen and (min-width: 1366px) and (max-width: 1439px) {
+    .content nav{
+        margin-top: 250%;
+    }
+    .content .logout_btn{
+        margin-top: 300%;
+        margin-left: 5.1%;
+    }
+    .square{
+        margin-left: 13%;
+    }
+    .bus{
+        margin-left: 6%;
+    }
+    .config{
+        margin-left: 11%;
+    }
+    .sec1_grafica, .sec2_grafica{
+        margin: 0 15px;
+    }
+    .horizontal_graficas--1{
+        margin-left: -2%;
+        height: 150px;
+        padding-bottom: 20px;
+    }
+    .sec1_grafica .cont-horizontal{
+        margin-top: 9%;
+    }
+    .horizontal_graficas--2{
+        margin-left: -2%;
+        height: 215px;
+        padding-bottom: 15px;
+    }
+    .horizontal_graficas--3{
+        margin-left: -2%;
+    }
+    .sec3_grafica--table{
+        width: 86%;
+    }
+    .vertical{
+        margin-top: -41.9%;
+    }
+    .content{
+        max-width: 70px;
+    }
+    .grafica_vertical .cont-graf{
+        width: 50%;
+        margin-left: 25%;
+    }
+    #table-scroll{
+        height: 120px;
+    }
+    .percent1{
+        bottom: 68%;
+        left: 11.6%;
+    }
+    .percent2{
+        bottom: 68%;
+        left: 40.7%;
+    }
+    .grafica_vertical{
+        width: 80%;
+        height: 185px;
+    }
+    .sec3_grafica{
+        width: 80%;
+        height: 74px;
+    }
+    .sec3_grafica h3 {
+        margin-top: -1%;
+    }
+    /*id container(grafica radar)*/
+    .container, #container{
+        height: 220px;
+        width: 400px;
+        margin-top: -2.5%;
+    }
+    /*id container(grafica radar1)*/
+    .container, #container1{
+        height: 220px;
+        width: 400px;
+        margin-top: -2.5%;
+    }
+}
+/*Resolution 1440 * 900px Carlitos*/
+@media screen and (min-width: 1440px) and (max-width: 1919px) {
+    .container-all{
+        margin-top: 1%;
+    }
+    .content nav{
+        margin-top: 330%;
+    }
+    .content .logout_btn{
+        margin-top: 390%;
+        margin-left: 5.1%;
+    }
+    .square{
+        margin-left: 13%;
+    }
+    .bus{
+        margin-left: 6%;
+    }
+    .config{
+        margin-left: 11%;
+    }
+    .sec1_grafica, .sec2_grafica{
+        margin: 0 15px;
+    }
+    .horizontal_graficas--1{
+        margin-left: -2%;
+        height: 180px;
+        padding-bottom: 20px;
+    }
+    .sec1_grafica .cont-horizontal{
+        margin-top: 9%;
+    }
+    .horizontal_graficas--2{
+        margin-left: -2%;
+        height: 250px;
+        padding-bottom: 15px;
+    }
+    .horizontal_graficas--3{
+        margin-left: -2%;
+    }
+    .sec3_grafica--table{
+        width: 86%;
+    }
+    .vertical{
+        margin-top: -47.2%;
+    }
+    .content{
+        max-width: 70px;
+    }
+    .grafica_vertical .cont-graf{
+        margin-left: 2.5%;
+        margin-left: 22%;
+    }
+    #table-scroll{
+        height: 160px;
+    }
+    .percent1{
+        bottom: 71%;
+        left: 11.7%;
+    }
+    .percent2{
+        bottom: 71%;
+        left: 40.7%;
+    }
+    .grafica_vertical{
+        width: 80%;
+    }
+    .sec3_grafica{
+        width: 80%;
+        height: 95px;
+    }
+    .sec3_grafica h3 {
+        margin-top: 1.5%;
+    }
+    /*id container(grafica radar)*/
+    .container, #container{
+        height: 257px;
+        width: 400px;
+    }
+    /*id container(grafica radar1)*/
+    .container, #container1{
+        height: 257px;
+        width: 400px;
+    }
+}
+/*Resolution 1920px*/
+@media screen and (min-width: 1920px) {
+    .content nav{
+        margin-top: 490%;
+    }
+    .content .logout_btn{
+        margin-top: 480%;
+        margin-left: 5.1%;
+    }
+    .square{
+        margin-left: 13%;
+    }
+    .bus{
+        margin-left: 6%;
+    }
+    .config{
+        margin-left: 11%;
+    }
+    .horizontal_graficas--1{
+        margin-left: -4%;
+    }
+    .horizontal_graficas--2{
+        margin-left: -4%;
+    }
+    .horizontal_graficas--3{
+        margin-left: -4%;
+    }
+    .sec3_grafica--table{
+        width: 85%;
+    }
+    .vertical{
+        margin-top: -44.2%;
+        width: 35.7%;
+    }
+    .content{
+        max-width: 70px;
+    }
+    .grafica_vertical .cont-graf{
+        margin-left: 3.5%;
+        margin-left: 22%;
+    }
+    #table-scroll{
+        height: 260px;
+    }
+    .percent1{
+        bottom: 77%;
+        left: 10.9%;
+    }
+    .percent2{
+        bottom: 77%;
+        left: 40.5%;
+    }
+    /*id container(grafica radar)*/
+    .container, #container{
+        height: 314px;
+        width: 550px;
+    }
+    /*id container(grafica radar1)*/
+    .container, #container1{
+        height: 314px;
+        width: 550px;
+    }
+}

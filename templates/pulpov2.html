@@ -1,0 +1,131 @@
+{% block head_content %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/pulpov2.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet">
+{% endblock %}
+
+{% block container %}
+
+{% comment %} menu hamburguesa mobile {% endcomment %}
+<div class="icono-menu">
+    {% load static %}
+    <img src="{% static 'images/open-menu.png' %}" id="icono-menu">
+</div>
+
+    <div class="cont-menu active" id="menu">
+        <ul>
+            <li class="burger-icon"> Dashboard </li>
+            <li class="burger-icon"> Vehículos </li>
+            <li class="burger-icon"> Configuración </li>
+            <li class="burger-icon"> Cerrar sesión </li>
+        </ul>
+    </div>
+
+<ul class="lateral">
+    <li class="lateral_item"><img class="pulpo" src="{% static 'images/Trazado 9.png' %}" alt=""></li>
+    <div class="tres-iconos">
+      <li class="lateral_item"><a class="center-icon" href="{% url 'dashboards:pulpov2' %}"><img src="{% static 'images/dashboard.png' %}" alt=""></a></li>
+      <li class="lateral_item"><a class="center-icon" href="{% url 'dashboards:vehiculosv2' %}"><img src="{% static 'images/truck.png' %}" alt=""></a></li>
+      <li class="lateral_item"><a class="center-icon" href="{% url 'dashboards:configv2' %}"><img src="{% static 'images/settings.png' %}" alt=""></a></li>
+    </div>
+    <li class="lateral_item"><a class="logout" href="{% url 'dashboards:logout' %}"><img src="{% static 'images/enter.png' %}" alt=""></a></li>
+</ul>
+<ul>
+  <li class="menu_li--left"><img src="{% static 'images/Grupo 66.png' %}" alt=""></li>
+  {% comment %} <li style="float:right"><a href="#home">Home</a></li>
+  <li style="float:right"><a href="#news">News</a></li>
+  <li style="float:right"><a href="#contact">Contact</a></li>
+  <li style="float:right"><a href="#contact">Contact</a></li> {% endcomment %}
+<div class="menu_button">
+    <button class="menu_li--right" type="submit">Buscar</button>
+</div>  
+  {% if fecha %}
+    <li class="menu_li--right"><input class="li_input--date" {% if fecha2 %}value="{{fecha2}}"{% endif %} type="date" name="fecha2"></li>
+  {% endif %}
+    <li class="menu_li--right"><input class="li_input--date" {% if fecha %}value="{{fecha}}"{% endif %} type="date" name="fecha1"></li>
+
+  <form id="form_fecha" action="{% url 'dashboards:buscar' %}" method="GET">
+      <li class="menu_li--right">
+            <div class="multiselect2">
+                <div class="selectBox2" onclick="showCheckboxes2()">
+                    <select name="OS">
+                        <option value="1">Ubicación</option> 
+                    </select>
+                    <div class="overSelect2"></div>
+                </div>
+                    <div id="checkboxes2" style="background-color: #171717;">
+                        <label for="one"><input type="checkbox"><p>Monterrey</p></label>
+                          <label for="two"><input type="checkbox"><p>Torreón</p></label>
+                          <label for="three"><input type="checkbox"><p>Jalisco</p></label>
+                    </div>
+             </div>
+      </li>
+                    
+                    <li class="menu_li--right">
+                        <form>
+                            <div class="multiselect">
+                                <div class="selectBox" onclick="showCheckboxes()">
+                                    <select name="OS">
+                                        <option value="1">Clase</option> 
+                                    </select>
+                                    <div class="overSelect"></div>
+                                </div>
+                                <div id="checkboxes" style="background-color: #171717;">
+                                    <label for="one"><input type="checkbox"><p>Hola111</p></label>
+                                    <label for="two"><input type="checkbox"><p>Hola2</p></label>
+                                    <label for="three"><input type="checkbox"><p>Hola3</p></label>
+                                </div>
+                            </div>
+                    </li>                    
+  </form>
+</ul>
+
+
+<script>
+ var expanded = false;
+            function showCheckboxes(){
+                var checkboxes = document.getElementById("checkboxes");
+                if (!expanded) {
+                    checkboxes.style.display = "block";
+                    checkboxes.style.position = "absolute";
+                    expanded = true;
+                } else {
+                    checkboxes.style.display = "none";
+                    expanded = false;
+                }
+            }
+
+            function showCheckboxes2(){
+                var checkboxes = document.getElementById("checkboxes2");
+                if (!expanded) {
+                    checkboxes.style.display = "block";
+                    checkboxes.style.position = "absolute";
+                    expanded = true;
+                } else {
+                    checkboxes.style.display = "none";
+                    expanded = false;
+                }
+            }
+
+const iconoMenu = document.querySelector('#icono-menu'),
+      menu = document.querySelector('#menu');
+
+iconoMenu.addEventListener('click', (e) => {
+
+    // Alternamos estilos para el menu y body
+    menu.classList.toggle('active');
+    document.body.classList.toggle('opacity');
+
+    // Alternamos su atributo 'src' para el ícono del menú
+    const rutaActual = e.target.getAttribute('src');
+
+    if(rutaActual == '{% static 'images/open-menu.png' %}'){
+        e.target.setAttribute('src','{% static 'images/open-menu2.png' %}');
+    }else{
+        e.target.setAttribute('src','{% static 'images/open-menu.png' %}');
+    }
+});
+</script>
+{% endblock  %}
